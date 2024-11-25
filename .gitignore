@@ -1,0 +1,6 @@
+# classic gitignore
+node_modules
+dist
+coverage
+.env
+
