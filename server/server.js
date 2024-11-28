@@ -1,5 +1,6 @@
 const { createServer } = require('http')
 const { Server } = require('socket.io')
+const { generateRandomBrightColor } = require('./utils')
 
 const httpServer = createServer()
 const io = new Server(httpServer, {
@@ -12,17 +13,15 @@ let currentUsers = []
 
 io.on('connection', (socket) => {
   console.log('User Connected:', socket.id)
-  currentUsers.push(socket.id)
+  currentUsers.push({ id: socket.id, color: generateRandomBrightColor() })
 
-  // handle current users
-  socket.emit('userId', { id: socket.id })
   socket.emit('usersConnected', currentUsers)
 
   socket.broadcast.emit('usersConnected', currentUsers)
 
   socket.on('disconnect', () => {
     console.log('User Disconnected:', socket.id)
-    currentUsers = currentUsers.filter((user) => user !== socket.id)
+    currentUsers = currentUsers.filter((user) => user.id !== socket.id)
 
     socket.broadcast.emit('userDisconnected', { id: socket.id })
   })
