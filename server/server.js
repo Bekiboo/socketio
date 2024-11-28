@@ -12,7 +12,7 @@ const io = new Server(httpServer, {
 let currentUsers = []
 
 io.on('connection', (socket) => {
-  console.log('User Connected:', socket.id)
+  // console.log('User Connected:', socket.id)
   currentUsers.push({ id: socket.id, color: generateRandomBrightColor() })
 
   socket.emit('usersConnected', currentUsers)
@@ -32,5 +32,5 @@ io.on('connection', (socket) => {
 })
 
 httpServer.listen(3000, () => {
-  // console.log('Server Connected')
+  console.log('Server Connected')
 })

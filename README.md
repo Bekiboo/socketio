@@ -1,26 +1,47 @@
 # Overview
 
-In Cube, you play a cube that has to avoid other cubes, and this on a cubic platform. The goal is to survive as long as possible. The game is over when the player's cube lose all its health points.
-Move around with WASD or the arrow keys.
+This is a simple WebSocket demo where users can connect to the app and see the cursor of other users in real-time. The app is built using React.js and Socket.IO.
 
-I wrote this game to learn how to use Svelte and Three.js, and to have fun. I also wanted to learn how to use a physics engine in a game and Rapier.js seemed like a good choice. Also, Threlte is an excellent wrapper for these three technologies, so I wanted to try it out.
+To install the app, use the following command:
 
-[Software Demo Video](https://youtu.be/eURL3AFthNs)
+```bash
+pnpm install
+```
+
+For the client side, use the following command to start the app:
+
+```bash
+pnpm run dev
+```
+
+For the server side, use the following command to start the server:
+
+```bash
+pnpm run start
+```
+
+[Demo Video](https://youtu.be/AuZu1HfiTfs)
+
+# Network Communication
+
+The architecture is client-server, with a Node.js server using Socket.IO to manage real-time WebSocket connections on port 3000. Clients, such as a web app hosted at http://localhost:5173, communicate with the server for state updates and broadcasts.
+
+The communication operates over TCP via WebSockets, ensuring reliable and ordered data transfer. JSON is used for message formatting, making exchanges easy to parse and compatible across platforms.
+
+Messages include user updates with IDs and colors, mouse movements with coordinates and IDs, and disconnection notices containing the user ID. This structured approach enables clear and efficient communication.
 
 # Development Environment
 
-Svelte, for the front end and to ease the development of the game.
-Three.js, for the 3D rendering of the game.
-Threlte, as a wrapper for Svelte and Three.js to make the development of the game easier.
-Rapier.js, for the physics engine of the game.
+I used Visual Studio Code to develop this app. The app is built using React.js and Socket.IO.
+React.js is a JavaScript library for building user interfaces.
+Socket.IO is a library that enables real-time, bidirectional, and event-based communication between web clients and servers.
 
 # Useful Websites
 
-- [Threlte](https://threlte.xyz)
-- [Rapier.js](https://rapier.rs/)
+- [Socket.IO](https://socket.io/)
+- [React.js](https://reactjs.org/)
 
 # Future Work
 
-- Add more levels to the game.
-- Add bonuses (Vampire Survivor like?)
-- Add more enemy types.
+- Add a chat feature
+- Add a feature to draw on the screen
